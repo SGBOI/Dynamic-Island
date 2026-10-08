@@ -22,23 +22,56 @@ Everything (tasks, timer, today's stats) is saved on the device. There is no acc
 
 ## Home Screen & Lock Screen widgets
 
-Web apps can't make iPad widgets, so the widget uses **Scriptable**, a free app that turns a script into a native widget.
+Web apps can't make iPad widgets, so the widgets use **Scriptable**, a free app that turns a script into native widgets.
+One script makes every version; you pick which one in the widget's **Parameter**.
 
-![Widget sizes](widget/preview.png)
+![Widget styles](widget/preview.png)
 
-Clawd's mood follows the clock: waving in the morning, happy in the evening, asleep at night. Each refresh (about every 15 minutes) brings a new speech bubble and a Claude status verb. Tapping the widget opens the app.
+| Parameter | What it shows | Best sizes |
+| --- | --- | --- |
+| `scene` (or `scene: your task`) | Clawd on the horizon with a speech bubble | medium, large, extra large |
+| `clawd` | Just Clawd; mood follows the clock | small |
+| `date` | Big date, Clawd peeking up from the bottom | small |
+| `day` | How much of today is gone; Clawd walks along it | small, medium |
+| `quote` (or `quote: your text`) | A comic speech bubble from Clawd | small, medium |
+| `focus: your task` | Your one task right now; Clawd at the laptop | medium, large |
+| `tasks: A; B; x C` | Ship list (start an item with `x ` to tick it) | medium, large |
+| `week` | This week with today marked | small, medium |
 
+Leaving Parameter empty gives `clawd` on small widgets and `scene` on the others. Widgets refresh about every 15 minutes; tapping one opens the app.
+
+**Set up**
 1. Install **Scriptable** from the App Store (free).
-2. In Safari, open [`widget/clawd-widget.js`](https://raw.githubusercontent.com/SGBOI/Dynamic-Island/claude/clawd-island/widget/clawd-widget.js), select all the text, and copy it.
-3. In Scriptable, tap **+**, paste, and rename the script to **Clawd** (tap the title at the top).
-4. Go to the Home Screen, long-press an empty spot → **Edit** → **Add Widget** → **Scriptable**. Pick a size and add it.
-5. Long-press the new widget → **Edit Widget** → set **Script** to **Clawd**.
-   Optional: type your current task in **Parameter**, and Clawd will cheer you on about it.
+2. In Safari, open [`widget/clawd-widget.js`](https://raw.githubusercontent.com/SGBOI/Dynamic-Island/claude/clawd-island/widget/clawd-widget.js), select all, and copy.
+3. In Scriptable, tap **+**, paste, and rename the script **Clawd**.
+4. On the Home Screen, long-press → **Edit** → **Add Widget** → **Scriptable**, pick a size, add it.
+5. Long-press the widget → **Edit Widget** → Script: **Clawd**, Parameter: one of the words above.
 
-For the Lock Screen: long-press the Lock Screen → **Customize** → **Lock Screen** → tap the widget area → **Scriptable**, then set the script to Clawd the same way.
+Lock Screen: long-press the Lock Screen → **Customize** → **Lock Screen** → widget area → **Scriptable**, then pick Clawd.
+
+## Wallpapers
+
+Square 2732×2732 images, so they fit an iPad in both orientations. In Safari, open one, long-press → **Save to Photos**, then Settings → **Wallpaper** → **Add New Wallpaper** → Photos.
+
+- [`clawd-horizon.png`](wallpapers/clawd-horizon.png): Clawd standing on the warm horizon
+- [`empty-horizon.png`](wallpapers/empty-horizon.png): the same glow with no Clawd, calmest behind a busy page
+- [`clawd-night.png`](wallpapers/clawd-night.png): cool night version with Claude sparks and a sleeping Clawd
+
+## Suggested two-page layout (landscape)
+
+**Page 1, widgets only:** extra large `scene` · small `date`, `clawd`, `day`, `week` · medium `focus`, `tasks`, `quote`
+
+![Page 1](wallpapers/layout-page1.png)
+
+**Page 2, widgets and apps:** medium `scene` · small `date`, `week` · medium `day` · your apps on the right
+
+![Page 2](wallpapers/layout-page2.png)
+
+To make app icons match: long-press the Home Screen → **Edit** → **Customize** → **Tinted**, and pick an orange close to Clawd's.
 
 ## Files
 
 - `index.html`: the whole app (HTML, CSS, JS, and Clawd drawn as pixel-art SVG)
 - `manifest.webmanifest`, `sw.js`, `icons/`: Home Screen install and offline support
-- `widget/clawd-widget.js`: the Scriptable widget
+- `widget/clawd-widget.js`: the Scriptable widgets
+- `wallpapers/`: wallpapers and layout mockups
