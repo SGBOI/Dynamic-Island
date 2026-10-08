@@ -20,7 +20,25 @@ Everything (tasks, timer, today's stats) is saved on the device. There is no acc
 
 > iPadOS doesn't let apps or websites draw over other apps, so the island lives inside this app, not across the whole system.
 
+## Home Screen & Lock Screen widgets
+
+Web apps can't make iPad widgets, so the widget uses **Scriptable**, a free app that turns a script into a native widget.
+
+![Widget sizes](widget/preview.png)
+
+Clawd's mood follows the clock: waving in the morning, happy in the evening, asleep at night. Each refresh (about every 15 minutes) brings a new speech bubble and a Claude status verb. Tapping the widget opens the app.
+
+1. Install **Scriptable** from the App Store (free).
+2. In Safari, open [`widget/clawd-widget.js`](https://raw.githubusercontent.com/SGBOI/Dynamic-Island/claude/clawd-island/widget/clawd-widget.js), select all the text, and copy it.
+3. In Scriptable, tap **+**, paste, and rename the script to **Clawd** (tap the title at the top).
+4. Go to the Home Screen, long-press an empty spot → **Edit** → **Add Widget** → **Scriptable**. Pick a size and add it.
+5. Long-press the new widget → **Edit Widget** → set **Script** to **Clawd**.
+   Optional: type your current task in **Parameter**, and Clawd will cheer you on about it.
+
+For the Lock Screen: long-press the Lock Screen → **Customize** → **Lock Screen** → tap the widget area → **Scriptable**, then set the script to Clawd the same way.
+
 ## Files
 
 - `index.html`: the whole app (HTML, CSS, JS, and Clawd drawn as pixel-art SVG)
 - `manifest.webmanifest`, `sw.js`, `icons/`: Home Screen install and offline support
+- `widget/clawd-widget.js`: the Scriptable widget
