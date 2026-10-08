@@ -29,14 +29,21 @@ One script makes every version; you pick which one in the widget's **Parameter**
 
 | Parameter | What it shows | Best sizes |
 | --- | --- | --- |
+| `clock` (or `clock: 24`) | Live clock with seconds ticking | small, medium, large |
+| `battery` | Battery level; Clawd naps when it's low and cheers when charging | small, medium, large |
+| `calendar` | This month with event dots, plus your next events | small, medium, large |
+| `tasks` (or `tasks: @School`) | Your open **Reminders**, with due times (one list with `@List`) | medium, large |
+| `tasks: A; B; x C` | A list you type yourself (start an item with `x ` to tick it) | medium, large |
+| `random` | A different Clawd every refresh: hats, weather, Clawd facts, headlines | any |
 | `scene` (or `scene: your task`) | Clawd on the horizon with a speech bubble | medium, large, extra large |
 | `clawd` | Just Clawd; mood follows the clock | small |
 | `date` | Big date, Clawd peeking up from the bottom | small |
 | `day` | How much of today is gone; Clawd walks along it | small, medium |
-| `quote` (or `quote: your text`) | A comic speech bubble from Clawd | small, medium |
-| `focus: your task` | Your one task right now; Clawd at the laptop | medium, large |
-| `tasks: A; B; x C` | Ship list (start an item with `x ` to tick it) | medium, large |
 | `week` | This week with today marked | small, medium |
+| `focus: your task` | Your one task right now; Clawd at the laptop | medium, large |
+| `quote` (or `quote: your text`) | A comic speech bubble from Clawd | small, medium |
+
+The first time you use `calendar` or `tasks`, run the script once inside Scriptable (tap ▶) and allow access to Calendars and Reminders.
 
 Leaving Parameter empty gives `clawd` on small widgets and `scene` on the others. Widgets refresh about every 15 minutes; tapping one opens the app.
 
