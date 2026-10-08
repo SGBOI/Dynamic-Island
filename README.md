@@ -89,9 +89,29 @@ Everything works on iPhone too: the app, the widgets (same Scriptable script; it
 | ![iPhone page 1](wallpapers/iphone-page1.png) | ![iPhone page 2](wallpapers/iphone-page2.png) | ![iPhone Lock Screen](wallpapers/iphone-lockscreen.png) |
 | large `scene` · small `clock` · small `battery` | medium `calendar` · medium `tasks` · apps | rectangle `calendar` · circle Clawd |
 
+## Clawd in your real Dynamic Island (iPhone 14 Pro and newer)
+
+Apps can only show custom images in the real Dynamic Island through their own Live Activities. Apps like **AniIsland** let you pick a GIF or PNG from Photos and loop it in the island. These GIFs are made for that: pixel Clawd on a black background, so it blends into the island.
+
+| File | What it does |
+| --- | --- |
+| [`clawd-idle.gif`](island-gifs/clawd-idle.gif) | Bobs, glances around, blinks |
+| [`clawd-walk.gif`](island-gifs/clawd-walk.gif) | Walks in place |
+| [`clawd-walk-wide.gif`](island-gifs/clawd-walk-wide.gif) | Walks across and back (for wide island layouts) |
+| [`clawd-typing.gif`](island-gifs/clawd-typing.gif) | Types on a laptop with Claude's spark |
+| [`clawd-happy.gif`](island-gifs/clawd-happy.gif) | Happy hop with sparks |
+| [`clawd-wave.gif`](island-gifs/clawd-wave.gif) | Waves |
+| [`clawd-sleep.gif`](island-gifs/clawd-sleep.gif) | Sleeps with rising z's |
+| [`clawd-party.gif`](island-gifs/clawd-party.gif), [`clawd-cool.gif`](island-gifs/clawd-cool.gif), [`clawd-wizard.gif`](island-gifs/clawd-wizard.gif) | Party hat, headphones and shades, wizard hat |
+| [`claude-spinner.gif`](island-gifs/claude-spinner.gif) | Claude's spinner: · ✢ ✳ ✶ ✻ ✽ |
+| [`clawd-still.png`](island-gifs/clawd-still.png), [`clawd-happy-still.png`](island-gifs/clawd-happy-still.png) | Still images |
+
+To use one: open it on your iPhone, long-press → **Save to Photos**, then pick it from Photos inside the island app.
+
 ## Files
 
 - `index.html`: the whole app (HTML, CSS, JS, and Clawd drawn as pixel-art SVG)
 - `manifest.webmanifest`, `sw.js`, `icons/`: Home Screen install and offline support
 - `widget/clawd-widget.js`: the Scriptable widgets
 - `wallpapers/`: wallpapers and layout mockups
+- `island-gifs/`: Clawd animations for Dynamic Island apps
