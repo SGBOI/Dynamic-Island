@@ -1,12 +1,13 @@
 # Clawd Island
 
-A Dynamic Island for your iPad, starring Clawd. It's a full-screen web app with:
+A minimalist, full-screen "living wallpaper" for your iPad, starring Clawd. There are no widgets. The whole screen is one calm scene:
 
 - **A liquid Dynamic Island** at the top. It shows the time, and while a timer runs it splits off a bubble with a progress ring. It also pops open with alerts (focus started, task shipped, break over). Tap it to expand into a Live Activity with Pause, +5 min, Skip, and Ship task.
-- **Clawd's comic panel.** Clawd wanders around, thinks out loud with Claude's spinner (`· ✢ ✳ ✶ ✻ ✽`) and verbs ("Pondering…", "Noodling…"), and talks in comic speech bubbles. In focus mode Clawd types on a laptop, on breaks Clawd sips coffee, and after a few idle minutes Clawd falls asleep. Shipping a task sets off a "SHIPPED!" burst with confetti. Tap Clawd to say hi.
-- **Focus timer:** 25/5 pomodoro, with a long break every 4th round.
-- **Ship list:** tasks you check off. The one marked NOW shows up in the island.
-- **Desk-clock extras:** a keep-screen-awake toggle, sound chimes, and full screen.
+- **A large thin clock** with the date and a Claude status line underneath (`✻ Pondering… · your current task`).
+- **Clawd on the horizon.** Clawd wanders across the screen, thinks out loud with Claude's spinner and verbs, and talks in comic speech bubbles. In focus mode Clawd types on a laptop, on breaks Clawd sips coffee, and after a few idle minutes Clawd falls asleep. Shipping a task sets off a "SHIPPED!" burst. Tap Clawd to say hi.
+- **The horizon line is the timer.** It fills with orange during focus and green during breaks. The glow behind it changes with the time of day.
+- **Tasks & timer live in a sheet.** Tap the status line or the "Tasks & timer" button to slide it up; swipe down or tap outside to close it.
+- **Corner buttons fade away** after a few seconds untouched, so it stays clean on your desk. Touch the screen to bring them back.
 
 Everything (tasks, timer, today's stats) is saved on the device. There is no account and no server.
 
