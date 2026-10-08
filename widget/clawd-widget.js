@@ -1,4 +1,4 @@
-// Clawd Island widgets for Scriptable (free on the App Store: https://scriptable.app)
+// Clawd Island widgets for Scriptable (free on the App Store: https://scriptable.app). Works on iPhone and iPad.
 //
 // One script, many widgets. Long-press a widget → Edit Widget → Parameter, then type one of:
 //
@@ -62,8 +62,10 @@ const LINES = {
 const line = (mood !== "sleep" && extra && style === "scene") ? pick([`“${extra}”? I believe in you.`, `Today's quest: ${extra}.`, `${extra}. Let's go.`]) : pick(LINES[mood]);
 
 /* ---------- canvas helpers ---------- */
-// Widget sizes in points (iPad). The image fills the widget, so content keeps a safe margin.
-const SIZE = { small: [170, 170], medium: [364, 170], large: [364, 382], extraLarge: [780, 382] };
+// Widget sizes in points. The image fills the widget, so content keeps a safe margin.
+const PHONE = (() => { try { return Device.isPhone(); } catch (e) { return false; } })();
+const SIZE = PHONE ? { small: [158, 158], medium: [338, 158], large: [338, 354], extraLarge: [338, 354] }
+  : { small: [170, 170], medium: [364, 170], large: [364, 382], extraLarge: [780, 382] };
 
 function canvas(W, H, opaque = true) {
   const c = new DrawContext(); c.size = new Size(W, H); c.opaque = opaque; c.respectScreenScale = true; return c;
@@ -259,7 +261,7 @@ const dayLabel = d => { const t = new Date(now.getFullYear(), now.getMonth(), no
 /* ---------- widget styles ---------- */
 const PAINT = {
   scene(W, H) {
-    const ctx = canvas(W, H), hz = H * .72, wide = W / H > 1.5, s = H / 170, f = Math.min(s, 1.45);
+    const wide = W / H > 1.5, ctx = canvas(W, H), hz = H * (wide ? .72 : .8), s = H / 170, f = Math.min(s, 1.45);
     sky(ctx, W, H, hz);
     const tx = W * .07, ty = H * (wide ? .1 : .07);
     txt(ctx, DAYS[now.getDay()], tx, ty, W * .6, 40 * s, Font.lightSystemFont((wide ? 26 * s : 30 * f)), C.text);
@@ -269,9 +271,9 @@ const PAINT = {
     const bw = wide ? W * .4 : W * .7, bh = wide ? 44 * Math.max(1, s * .8) : 50 * f;
     const by = Math.max(wide ? 0 : ty + 38 * f + 30 * f, hz - 10 * u - bh - 18);
     bubble(ctx, clamp(cx - bw * .6, W * .05, W * .95 - bw), by, bw, bh, line, wide ? 12 * Math.max(1, s * .75) : 13.5 * f, cx - u);
-    const gy = hz + (H - hz) * .3, g = wide ? Math.max(1, s * .8) : f;
+    const gy = hz + (H - hz) * (wide ? .3 : .2), g = wide ? Math.max(1, s * .8) : f;
     status(ctx, tx, gy, W * .6, (wide ? 10 : 11) * g);
-    if (extra) txt(ctx, `Now · ${extra}`, tx, gy + 16 * g, W * .6, 18 * g, Font.mediumSystemFont((wide ? 11 : 12) * g), C.text);
+    if (extra) txt(ctx, `Now · ${extra}`, tx, gy + 16 * g, wide ? W * .6 : W * .86, 18 * g, Font.mediumSystemFont((wide ? 11 : 12) * g), C.text);
     return ctx.getImage();
   },
 

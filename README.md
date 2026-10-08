@@ -76,6 +76,19 @@ Square 2732×2732 images, so they fit an iPad in both orientations. In Safari, o
 
 To make app icons match: long-press the Home Screen → **Edit** → **Customize** → **Tinted**, and pick an orange close to Clawd's.
 
+## iPhone
+
+Everything works on iPhone too: the app, the widgets (same Scriptable script; it sizes itself for iPhone), and iPhone-shaped wallpapers.
+
+**The app on an iPhone with a Dynamic Island (14 Pro and newer):** add it to your Home Screen and open it in portrait. Clawd's island then wraps around the real one: Clawd sits on the left of the camera, the timer on the right, and alerts and the expanded view grow down from it like a Live Activity. On other iPhones, or in Safari, it sits just below the top of the screen as on iPad.
+
+**Wallpapers** (1290×2796, fits current iPhones): [`clawd-horizon-iphone.png`](wallpapers/clawd-horizon-iphone.png), [`empty-horizon-iphone.png`](wallpapers/empty-horizon-iphone.png), [`clawd-night-iphone.png`](wallpapers/clawd-night-iphone.png). A nice pairing: Clawd horizon on the Lock Screen and empty horizon on the Home Screen.
+
+| Page 1: widgets | Page 2: widgets and apps | Lock Screen |
+| --- | --- | --- |
+| ![iPhone page 1](wallpapers/iphone-page1.png) | ![iPhone page 2](wallpapers/iphone-page2.png) | ![iPhone Lock Screen](wallpapers/iphone-lockscreen.png) |
+| large `scene` · small `clock` · small `battery` | medium `calendar` · medium `tasks` · apps | rectangle `calendar` · circle Clawd |
+
 ## Files
 
 - `index.html`: the whole app (HTML, CSS, JS, and Clawd drawn as pixel-art SVG)

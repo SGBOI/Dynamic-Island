@@ -308,6 +308,28 @@ body.sheet-open .sheet{transform:translate(-50%, 0)}
 .sheet-foot{display:flex; justify-content:space-between; gap:10px; margin-top:10px; font:400 12px/1.3 var(--font-mono); color:var(--faint)}
 .sheet-foot button{color:var(--clay-hi); font:500 12px var(--font-ui)}
 
+/* iPhone with a real Dynamic Island (Home Screen app, portrait): Clawd's island wraps around the camera cutout.
+   The cutout sits in the middle of the pill, so content lives in the two lobes on either side, like a Live Activity. */
+.hw-island .island{top:10px; width:190px; height:41px}
+.hw-island .island.live{width:226px}
+.hw-island .island[data-mode="alert"]{width:min(372px, calc(100vw - 16px)); height:104px}
+.hw-island .island[data-mode="expanded"]{width:min(372px, calc(100vw - 16px)); height:236px}
+.hw-island .s-main,.hw-island .i-main{border-radius:21px}
+.hw-island .island[data-mode="alert"] .s-main,.hw-island .island[data-mode="alert"] .i-main{border-radius:38px}
+.hw-island .island[data-mode="expanded"] .s-main,.hw-island .island[data-mode="expanded"] .i-main{border-radius:46px}
+.hw-island .ic-label{display:none}
+.hw-island .v-compact{padding:0 13px 0 12px}
+.hw-island .v-compact .clawd{width:24px}
+.hw-island .ic-right{font-size:12px}
+.hw-island .island:not(.live) #icRight{display:none}
+.hw-island .v-alert{padding:42px 20px 10px 16px}
+.hw-island .v-alert .clawd{width:48px}
+.hw-island .v-expanded{padding:52px 20px 18px; gap:10px 14px}
+.hw-island .v-expanded .clawd{width:58px}
+.hw-island .ie-ring{width:66px; height:66px}
+.hw-island .ie-title{font-size:18px}
+.hw-island .ibtn{padding:0 12px; font-size:13px}
+
 @media (max-aspect-ratio: 1/1){ /* portrait */
   :root{--horizon:30%; --aw:clamp(112px, 22vw, 190px)}
   .hero{top:max(14vh, 96px)}
@@ -744,6 +766,16 @@ function poke() {
 
 /* ================= island ================= */
 const island = $('#island');
+// On an iPhone with a real Dynamic Island, opened from the Home Screen in portrait, the top safe area is about 59pt.
+const insetProbe = document.createElement('div');
+insetProbe.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:env(safe-area-inset-top,0px);visibility:hidden;pointer-events:none';
+document.body.append(insetProbe);
+function detectHwIsland() {
+  const on = /iPhone/.test(navigator.userAgent) && insetProbe.offsetHeight >= 58 && innerHeight > innerWidth;
+  document.documentElement.classList.toggle('hw-island', on);
+}
+const hwIsland = () => document.documentElement.classList.contains('hw-island');
+detectHwIsland(); addEventListener('resize', detectHwIsland);
 let collapseTimer = 0, alertTimer = 0; const alertQ = [];
 function setIsland(mode) { island.dataset.mode = mode; island.setAttribute('aria-expanded', mode === 'expanded'); render(); }
 function islandAlert(title, msg, sfx = '') { alertQ.push({ title, msg, sfx }); if (island.dataset.mode !== 'alert') nextAlert(); }
@@ -948,7 +980,7 @@ function render() {
   $$('.seg button').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === T.mode));
   // island
   const live = T.running && island.dataset.mode === 'compact';
-  island.classList.toggle('live', live); island.classList.toggle('split', live); island.classList.toggle('brk', brk);
+  island.classList.toggle('live', live); island.classList.toggle('split', live && !hwIsland()); island.classList.toggle('brk', brk);
   $('#icLabel').textContent = T.running ? (brk ? MODES[T.mode].label : (ct ? ct.text : 'Focus')) : '';
   $('#icRight').textContent = T.running ? fmt(rem) : hm;
   ['#ibProg', '#ieProg'].forEach(s => { const c = $(s); c.setAttribute('stroke-dasharray', `${prog.toFixed(2)} 100`); c.classList.toggle('zero', prog < .4); });
